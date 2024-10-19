@@ -85,7 +85,7 @@ void SlimeVR::OnOffButton::update() {
 
 	const auto& sensors = sensorManager.getSensors();
 	for (auto& sensor : sensors) {
-		sensor->deinitialize();
+		// sensor->deinitialize();
 	}
 
 #ifdef ESP8266
