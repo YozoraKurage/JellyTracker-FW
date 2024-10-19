@@ -77,9 +77,8 @@ class SoftFusionSensor : public Sensor {
 		{ imu::TemperatureZROChange } -> std::same_as<float>;
 	};
 
-	static constexpr bool HasPerSensorVQFParams = requires(imu i) {
-		imu:: SensorVQFParams;
-	};
+	static constexpr bool HasPerSensorVQFParams
+		= requires(imu i) { imu::SensorVQFParams; };
 
 	bool detected() const {
 		const auto value = m_sensor.i2c.readReg(imu::Regs::WhoAmI::reg);
@@ -876,9 +875,7 @@ uint32_t m_lastRotationPacketSent = 0;
 uint32_t m_lastTemperaturePacketSent = 0;
 uint32_t m_lastTemperatureSampling = 0;
 
-	void deinitialize() override {
-		m_sensor.deinitialize();
-	}
+void deinitialize() override { m_sensor.deinitialize(); }
 };
 
 }  // namespace SlimeVR::Sensors
