@@ -22,15 +22,19 @@
 */
 
 #define IMU IMU_LSM6DSV
+#define SECOND_IMU IMU
 #define BOARD BOARD_CUSTOM
-#define IMU_ROTATION DEG_90
+#define IMU_ROTATION DEG_0
+#define SECOND_IMU_ROTATION DEG_90
 
 #define PRIMARY_IMU_OPTIONAL false
 
-#define MAX_IMU_COUNT 1
+#define MAX_IMU_COUNT 2
 
+// whats it?
 #define ON_OFF_BUTTON 1
 
+/*
 #ifndef IMU_DESC_LIST
 #define IMU_DESC_LIST            \
 	IMU_DESC_ENTRY(              \
@@ -43,22 +47,20 @@
 		PIN_IMU_INT              \
 	)
 #endif
+*/
 
-#define BATTERY_MONITOR BAT_EXTERNAL
+#ifndef IMU_DESC_LIST
+#define IMU_DESC_LIST \
+        IMU_DESC_ENTRY(IMU,        PRIMARY_IMU_ADDRESS_ONE,   IMU_ROTATION,        PIN_IMU_SCL, PIN_IMU_SDA, PRIMARY_IMU_OPTIONAL,   PIN_IMU_INT) \
+        IMU_DESC_ENTRY(SECOND_IMU, SECONDARY_IMU_ADDRESS_TWO, SECOND_IMU_ROTATION, PIN_IMU_SCL, PIN_IMU_SDA, PRIMARY_IMU_OPTIONAL, PIN_IMU_INT_2)
+#endif
 
-#define PIN_IMU_SDA 5
-#define PIN_IMU_SCL 6
+//no use batt monitor
+//#define BATTERY_MONITOR BAT_EXTERNAL
+
+#define PIN_IMU_SDA 3
+#define PIN_IMU_SCL 2
 #define PIN_IMU_INT 255
 #define PIN_IMU_INT_2 255
-#define PIN_BATTERY_LEVEL 3
-#define LED_PIN 0
-#define LED_INVERTED true
-#ifndef BATTERY_SHIELD_RESISTANCE
-#define BATTERY_SHIELD_RESISTANCE 0
-#endif
-#ifndef BATTERY_SHIELD_R1
-#define BATTERY_SHIELD_R1 150
-#endif
-#ifndef BATTERY_SHIELD_R2
-#define BATTERY_SHIELD_R2 150
-#endif
+#define LED_PIN LED_OFF
+#define PIN_BATTERY_LEVEL 0
