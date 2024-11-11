@@ -48,8 +48,21 @@ unsigned long lastStatePrint = 0;
 bool secondImuActive = false;
 BatteryMonitor battery;
 
+// deepsleep flag
+RTC_DATA_ATTR int bootCount = 0;
+
 void setup()
 {
+
+	//init
+	++bootCount;
+	if(bootCount==1) { // if first boot...
+	esp_sleep_enable_timer_wakeup(1000);
+	esp_deep_sleep_start();
+  	}
+	// low energy mode
+	setCpuFrequencyMhz(160);
+
     Serial.begin(serialBaudRate);
     globalTimer = timer_create_default();
 

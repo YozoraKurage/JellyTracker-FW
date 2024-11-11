@@ -85,7 +85,10 @@ void WiFiNetwork::setUp() {
     wifiHandlerLogger.info("Loaded credentials for SSID %s and pass length %d", WiFi.SSID().c_str(), WiFi.psk().length());
     setStaticIPIfDefined();
     wl_status_t status = WiFi.begin(); // Should connect to last used access point, see https://arduino-esp8266.readthedocs.io/en/latest/esp8266wifi/station-class.html#begin
-    wifiHandlerLogger.debug("Status: %d", status);
+
+	WiFi.setTxPower(WIFI_POWER_2dBm);
+
+	wifiHandlerLogger.debug("Status: %d", status);
     wifiState = SLIME_WIFI_SAVED_ATTEMPT;
     wifiConnectionTimeout = millis();
 
