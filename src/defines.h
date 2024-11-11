@@ -26,11 +26,11 @@
 // ================================================
 
 // Set parameters of IMU and board used
-#define IMU IMU_BNO085
+#define IMU IMU_LSM6DSV
 #define SECOND_IMU IMU
-#define BOARD BOARD_SLIMEVR
-#define IMU_ROTATION DEG_270
-#define SECOND_IMU_ROTATION DEG_270
+#define BOARD BOARD_CUSTOM
+#define IMU_ROTATION DEG_0
+#define SECOND_IMU_ROTATION DEG_90
 
 #define PRIMARY_IMU_OPTIONAL false
 #define SECONDARY_IMU_OPTIONAL true
@@ -56,7 +56,7 @@ IMU_DESC_ENTRY(IMU_BMP160, PRIMARY_IMU_ADDRESS_ONE, IMU_ROTATION, PIN_IMU_SCL, P
 //   BAT_EXTERNAL for ADC pin,
 //   BAT_INTERNAL for internal - can detect only low battery,
 //   BAT_MCP3021 for external ADC connected over I2C
-#define BATTERY_MONITOR BAT_EXTERNAL
+// #define BATTERY_MONITOR BAT_EXTERNAL
 
 // BAT_EXTERNAL definition override
 // D1 Mini boards with ESP8266 have internal resistors. For these boards you only have to adjust BATTERY_SHIELD_RESISTANCE.
@@ -148,6 +148,12 @@ IMU_DESC_ENTRY(IMU_BMP160, PRIMARY_IMU_ADDRESS_ONE, IMU_ROTATION, PIN_IMU_SCL, P
 //  #define LED_PIN 2
 //  #define LED_INVERTED false
 #elif BOARD == BOARD_CUSTOM
+  #define PIN_IMU_SDA 3
+  #define PIN_IMU_SCL 2
+  #define PIN_IMU_INT 255
+  #define PIN_IMU_INT_2 255
+  #define LED_PIN LED_OFF
+  #define PIN_BATTERY_LEVEL 0
   // Define pins by the examples above
 #elif BOARD == BOARD_WROOM32
   #define PIN_IMU_SDA 21
