@@ -61,7 +61,7 @@ void setup()
 	esp_deep_sleep_start();
   	}
 	// low energy mode
-	setCpuFrequencyMhz(160);
+	//setCpuFrequencyMhz(160);
 
     Serial.begin(serialBaudRate);
     globalTimer = timer_create_default();
